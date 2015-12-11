@@ -28,22 +28,22 @@ def do_login(driver, username, password):
     password_input.send_keys(password)
     password_input.send_keys(Keys.RETURN)
 
-def do_valid_code(driver, url, type, numero):
+def do_valid_code(driver, url, type, number):
     try:
         driver.execute_script(u"jQuery('.promocode-field').show()")
-        ticket_number = "%s%04i" % (type, numero)
+        ticket_number = "%s%04i" % (type, number)
         candidate_promocode_input = driver.find_element_by_id(u'candidatePromocode')
-        candidate_promocode_input.send_keys(numero_do_cupom)
+        candidate_promocode_input.clear()
+        candidate_promocode_input.send_keys(ticket_number)
         candidate_promocode_input.send_keys(Keys.RETURN)
         driver.implicitly_wait(10)
-        candidate_promocode_input.clear()
 
         if driver.find_element_by_class_name(u'error-box') == None:
             print u"It's a valid ticket %s" % ticket_number
 
     except StaleElementReferenceException:
         driver.get(url)
-        do_valid_code(driver, url, type, numero)
+        do_valid_code(driver, url, type, number)
 
 @click.command()
 @click.option('--username', required='True', help=u'Username para login no peixeurbano')
@@ -57,8 +57,8 @@ def valid_promocupom(username, password, types, url):
     do_login(driver, username, password)
     for type in types:
         print u'Testing tickets for %s type' % type
-        for numero in range(0000, 9999):
-            do_valid_code(driver, url, type, numero)
+        for number in range(0000, 9999):
+            do_valid_code(driver, url, type, number)
 
 if __name__ == u'__main__':
     valid_promocupom()
