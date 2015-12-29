@@ -2,10 +2,10 @@
 Simples scripts to help us to do something automatically.
 
 == Running
-
 * Install virtualenv: https://virtualenv.readthedocs.org/en/latest/installation.html +
-* Start virtualenv and activy env +
-* Install all deps: pip install requeriments.txt +
+* Create a env: `virtualenv env` +
+* Start env: `source env/bin/activate` +
+* Install all deps: `pip install requeriments.txt` +
 * run: python test-peixe-cupom.py
 
 
