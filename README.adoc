@@ -6,7 +6,7 @@ Simples scripts to help us to do something automatically.
 * Create a env: `virtualenv env` +
 * Start env: `source env/bin/activate` +
 * Install all deps: `pip install requeriments.txt` +
-* run: python test-peixe-cupom.py
+* run: `python test-peixe-cupom.py`
 
 
 == LICENSE
